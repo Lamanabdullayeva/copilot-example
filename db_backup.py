@@ -1,6 +1,6 @@
 import shutil
 
-active_db_file =  'app.db'
+active_db_file = 'app.db'
 backup_db_file = 'backup.db'
 
 def backup_db():
@@ -8,16 +8,18 @@ def backup_db():
     print(f'Backup of {active_db_file} created successfully!')
 
 def restore_db():
-
     shutil.copy(backup_db_file, active_db_file)
     print(f'{active_db_file} restored successfully!')
 
-def main():
-    print('1. Bakcup the database')
+def print_menu():
+    print('1. Backup the database')
     print('2. Restore the database')
     print('3. Exit')
 
-    choice = input('Enter your choice: ')
+def get_user_choice():
+    return input('Enter your choice: ')
+
+def handle_choice(choice):
     if choice == '1':
         backup_db()
     elif choice == '2':
@@ -25,5 +27,10 @@ def main():
     else:
         print('Invalid choice')
 
-    if __name__ == '__main__':
-        main()
+def main():
+    print_menu()
+    choice = get_user_choice()
+    handle_choice(choice)
+
+if __name__ == '__main__':
+    main()
